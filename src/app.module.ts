@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JobsService } from './jobs/jobs.service';
 import { JobsModule } from './jobs/jobs.module';
 import { Jobs } from './entities/jobs.entity';
+import { JobCategory } from './entities/jobs-category.entity';
+import { JobTag } from './entities/job-tags.entity';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { Jobs } from './entities/jobs.entity';
       username: 'root',
       password: 'admin123',
       database: 'lowker',
-      entities: [Jobs],
+      entities: [Jobs, JobCategory, JobTag],
       synchronize: true,
       autoLoadEntities: true, // Ensure this is true
     }),

@@ -8,6 +8,6 @@ import { Jobs } from '../entities/jobs.entity';
     imports: [TypeOrmModule.forFeature([Jobs])],
     controllers: [JobsController],
     providers: [JobsService],
-    exports: [JobsService]
+    exports: [JobsService, "src/etc/enums.ts"]
   })
 export class JobsModule {}

@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { Jobs } from '../entities/jobs.entity';
+import { Body, Controller, Get, Param, Post, Patch, Delete } from '@nestjs/common';
+import { CreateJobModel, Jobs } from '../entities/jobs.entity';
 import { JobsService } from './jobs.service';
-import { CreateJobDto } from './dto/create-jobs.dto';
 
 @Controller('jobs')
 export class JobsController {
@@ -18,8 +17,17 @@ export class JobsController {
     }
 
     @Post()
-    createJob(@Body() CreateJobDto : CreateJobDto) {
-        this.jobsService.createJob(CreateJobDto)
-    } 
-}
+    createJob(@Body() createJobModel : CreateJobModel) {
+        this.jobsService.createJob(createJobModel)
+    }
 
+    @Patch(':id')
+    updateJob(@Param('id') id: string, @Body() updateJobDto: Partial<CreateJobModel>) {
+        return this.jobsService.updateJob(+id, updateJobDto);
+    }
+
+    @Delete(':id')
+    deleteJob(@Param('id') id: string) {
+        return this.jobsService.deleteJob(+id);
+    }
+}
