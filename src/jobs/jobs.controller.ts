@@ -18,8 +18,8 @@ export class JobsController {
 
     @Post()
     createJob(@Body() createJobModel : CreateJobModel) {
-        this.jobsService.createJob(createJobModel)
-    }
+            this.jobsService.createJob(createJobModel)
+    }   
 
     @Patch(':id')
     updateJob(@Param('id') id: string, @Body() updateJobDto: Partial<CreateJobModel>) {

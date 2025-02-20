@@ -8,6 +8,8 @@ import { JobsModule } from './jobs/jobs.module';
 import { Jobs } from './entities/jobs.entity';
 import { JobCategory } from './entities/jobs-category.entity';
 import { JobTag } from './entities/job-tags.entity';
+import { JobsCategoryModule } from './job-category/job-category.module';
+import { JobTagModule } from './job-tag/job-tag.module';
 
 @Module({
   imports: [
@@ -23,8 +25,10 @@ import { JobTag } from './entities/job-tags.entity';
       autoLoadEntities: true, // Ensure this is true
     }),
     JobsModule,
+    JobsCategoryModule,
+    JobTagModule,
   ],
-  controllers: [AppController, JobsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
