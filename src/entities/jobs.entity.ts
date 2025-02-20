@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsBoolean, isDate, IsDate, isNumber, IsEnum, IsObject } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsOptional, IsBoolean, isDate, IsDate, isNumber, IsEnum, IsObject, IsArray } from 'class-validator';
 import { Gender, JobType } from '../etc/enums';
 import { JobCategory } from './jobs-category.entity';
 import { JobTag } from './job-tags.entity';
@@ -64,10 +64,10 @@ export class Jobs {
 }
 
 
-export class CreateJobModel {
-
+export class JobRequestModel {
   @IsNumber()
-  job_category : number;
+  @IsNotEmpty()
+  job_category: number;  // Changed from job_category to job_category_id for clarity
 
   @IsString()
   title: string;
@@ -105,4 +105,8 @@ export class CreateJobModel {
   @IsBoolean()
   isActive: boolean;
 
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  tag_ids: number[];  // New field for job tag IDs
 }

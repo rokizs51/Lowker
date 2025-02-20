@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Patch, Delete } from '@nestjs/common';
-import { CreateJobModel, Jobs } from '../entities/jobs.entity';
+import {  JobRequestModel, Jobs } from '../entities/jobs.entity';
 import { JobsService } from './jobs.service';
 
 @Controller('jobs')
@@ -17,12 +17,12 @@ export class JobsController {
     }
 
     @Post()
-    createJob(@Body() createJobModel : CreateJobModel) {
+    createJob(@Body() createJobModel : JobRequestModel) {
             this.jobsService.createJob(createJobModel)
     }   
 
     @Patch(':id')
-    updateJob(@Param('id') id: string, @Body() updateJobDto: Partial<CreateJobModel>) {
+    updateJob(@Param('id') id: string, @Body() updateJobDto: Partial<JobRequestModel>) {
         return this.jobsService.updateJob(+id, updateJobDto);
     }
 
