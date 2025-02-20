@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import {  CreateJobModel, Jobs } from '../entities/jobs.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -33,6 +33,10 @@ export class JobsService {
             ...jobData,
             job_category: jobCategory,
         });
+
+        if (!job) {
+            throw new BadRequestException('failed create job, please check your request')
+        }
         return await this.jobRepository.save(job);
     }
 

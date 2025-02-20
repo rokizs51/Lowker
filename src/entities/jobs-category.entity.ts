@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Jobs } from './jobs.entity';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 @Entity()
 export class JobCategory{
@@ -7,17 +8,21 @@ export class JobCategory{
     id : number ;
 
     @Column()
-    job_id : number ;
-
-    @Column()
     name : string;
 
     @OneToMany(() => Jobs, (job) => job.job_category)
     jobs: Jobs[];
 
-    @Column()
-    createdAt : Date;
+    @UpdateDateColumn()
+    updated_at: Date;
 
-    @Column()
-    updatedAt : Date;
+    @CreateDateColumn()
+    created_at: Date;
+}
+
+
+export class JobCategoryModel {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
 }

@@ -64,8 +64,6 @@ export class Jobs {
 }
 
 
-
-
 export class CreateJobModel {
 
   @IsNumber()
