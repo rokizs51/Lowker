@@ -11,6 +11,7 @@ import { JobTag } from './entities/job-tags.entity';
 import { JobsCategoryModule } from './job-category/job-category.module';
 import { JobTagModule } from './job-tag/job-tag.module';
 import { User } from './entities/user.entity';
+import { Company } from './entities/company.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { User } from './entities/user.entity';
       username: 'root',
       password: 'admin123',
       database: 'lowker',
-      entities: [Jobs, JobCategory, JobTag, User],
+      entities: [Jobs, JobCategory, JobTag, User, Company],
       synchronize: false,
       autoLoadEntities: true, // Ensure this is true
       migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
