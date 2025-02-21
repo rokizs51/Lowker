@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { IsNotEmpty, IsString, IsNumber, IsOptional, IsBoolean, isDate, IsDate, isNumber, IsEnum, IsObject, IsArray } from 'class-validator';
-import { Gender, JobType } from '../etc/enums';
+import {  JobGender, JobType } from '../etc/enums';
 import { JobCategory } from './jobs-category.entity';
 import { JobTag } from './job-tags.entity';
 
@@ -45,8 +45,8 @@ export class Jobs {
   @Column()
   location: string;
 
-  @Column({type : 'enum', enum : Gender})
-  gender: Gender;
+  @Column({type : 'enum', enum : JobGender})
+  preferred_gender: JobGender;
   
   @Column()
   isActive : boolean;
@@ -99,8 +99,8 @@ export class JobRequestModel {
   @IsString()
   location: string;
 
-  @IsEnum(Gender)
-  gender: Gender;
+  @IsEnum(JobGender)
+  preferred_gender: JobGender;
 
   @IsBoolean()
   isActive: boolean;

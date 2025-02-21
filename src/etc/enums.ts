@@ -5,10 +5,10 @@ export enum JobType {
     INTERNSHIP = 'internship'
 }
 
-export enum Gender {
+export enum JobGender {
     Male = 'male',
     Female = 'female',
-    Other = 'other'
+    any = 'any'
 }
 
 export enum Role {

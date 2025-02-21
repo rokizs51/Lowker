@@ -33,9 +33,9 @@ export class SeedInitialData1740016117286 implements MigrationInterface {
 
         // Insert sample jobs
         await queryRunner.query(`INSERT INTO "jobs" (title, description, experience, education, salary_min, salary_max, job_type, age, work_schedule, location, gender, "isActive", "jobCategoryId") VALUES
-            ('Senior Full Stack Developer', 'We are looking for an experienced full stack developer...', 5, 'Bachelor Degree', 8000, 12000, 'full_time', 25, 'Monday-Friday', 'Jakarta', 'other', true, $1),
-            ('UI/UX Designer', 'Creative designer needed for our product team...', 3, 'Bachelor Degree', 5000, 8000, 'full_time', 23, 'Monday-Friday', 'Bandung', 'other', true, $2),
-            ('Digital Marketing Manager', 'Lead our digital marketing initiatives...', 4, 'Bachelor Degree', 6000, 9000, 'full_time', 25, 'Monday-Friday', 'Jakarta', 'other', true, $3)
+            ('Senior Full Stack Developer', 'We are looking for an experienced full stack developer...', 5, 'Bachelor Degree', 8000, 12000, 'full_time', 25, 'Monday-Friday', 'Jakarta', 'male', true, $1),
+            ('UI/UX Designer', 'Creative designer needed for our product team...', 3, 'Bachelor Degree', 5000, 8000, 'full_time', 23, 'Monday-Friday', 'Bandung', 'female', true, $2),
+            ('Digital Marketing Manager', 'Lead our digital marketing initiatives...', 4, 'Bachelor Degree', 6000, 9000, 'full_time', 25, 'Monday-Friday', 'Jakarta', 'male', true, $3)
         `, [softwareDevId[0].id, designId[0].id, marketingId[0].id]);
 
         // Get job IDs
