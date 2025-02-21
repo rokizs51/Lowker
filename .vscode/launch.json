@@ -12,7 +12,10 @@
         "skipFiles": ["<node_internals>/**"],
         "preLaunchTask": "npm: build",
         "program": "${workspaceFolder}/src/main.ts",
-        "console": "integratedTerminal"
+        "console": "integratedTerminal",
+        "env": {
+            "PORT" : "3001"
+        }
         }
     ]
       

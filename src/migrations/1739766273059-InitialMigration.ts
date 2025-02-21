@@ -4,6 +4,7 @@ export class InitialMigration1739766273059 implements MigrationInterface {
     name = 'InitialMigration1739766273059'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);
         await queryRunner.query(`CREATE TABLE "job_category" ("id" SERIAL NOT NULL, "job_id" integer NOT NULL, "name" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL, "updatedAt" TIMESTAMP NOT NULL, CONSTRAINT "PK_15f44c4b9fbb84e28a0346e930f" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "job_tag" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, CONSTRAINT "UQ_0c4e9330020ee70d765dff04867" UNIQUE ("name"), CONSTRAINT "PK_4257e6a577f466ed9123a55df3f" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TYPE "public"."jobs_job_type_enum" AS ENUM('full_time', 'part_time', 'contract', 'internship')`);
