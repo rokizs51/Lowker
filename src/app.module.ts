@@ -10,6 +10,7 @@ import { JobCategory } from './entities/jobs-category.entity';
 import { JobTag } from './entities/job-tags.entity';
 import { JobsCategoryModule } from './job-category/job-category.module';
 import { JobTagModule } from './job-tag/job-tag.module';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
@@ -20,9 +21,11 @@ import { JobTagModule } from './job-tag/job-tag.module';
       username: 'root',
       password: 'admin123',
       database: 'lowker',
-      entities: [Jobs, JobCategory, JobTag],
-      synchronize: true,
+      entities: [Jobs, JobCategory, JobTag, User],
+      synchronize: false,
       autoLoadEntities: true, // Ensure this is true
+      migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+      migrationsRun: true
     }),
     JobsModule,
     JobsCategoryModule,
