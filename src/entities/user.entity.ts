@@ -26,7 +26,7 @@ export class User {
     @MinLength(8)
     password: string;
 
-    @Column({type: 'enum', enum: Role, default: Role.JOB_SEEKER})
+    @Column({type: 'enum', enum: Role, default: Role.NEW})
     role: Role;
 
     @Column({ default: false })

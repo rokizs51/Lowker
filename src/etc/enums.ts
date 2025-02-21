@@ -14,6 +14,7 @@ export enum JobGender {
 export enum Role {
     EMPLOYER = 'employer',
     JOB_SEEKER = 'job_seeker',
+    NEW = 'new'
 }
 
   
