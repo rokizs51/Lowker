@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm';
-import { IsNotEmpty, IsEmail, IsUrl, IsPhoneNumber } from 'class-validator';
+import { IsNotEmpty, IsEmail, IsUrl, IsPhoneNumber, isNotEmpty, IsOptional } from 'class-validator';
 import { Jobs } from './jobs.entity';
 import { User } from './user.entity';
 
@@ -30,7 +30,7 @@ export class Company {
     @IsUrl()
     website: string;
 
-    @Column()
+    @Column({ nullable: true})
     address: string;
 
     @Column({ nullable: true })
@@ -69,4 +69,55 @@ export class Company {
 
     @UpdateDateColumn()
     updated_at: Date;
+}
+
+export class CompanyModel {
+    @IsNotEmpty()
+    name : string;
+
+    @IsOptional()
+    description?: string;
+
+    @IsOptional()
+    logo?: string;
+
+    @IsEmail()
+    @IsNotEmpty()
+    email: string;
+
+    @IsPhoneNumber()
+    @IsOptional()
+    phone?: string;
+
+    @IsUrl()
+    @IsOptional()
+    website?: string;
+
+    @IsOptional()
+    address?: string;
+
+    @IsOptional()
+    city?: string;
+
+    @IsOptional()
+    state?: string;
+
+    @IsOptional()
+    country?: string;
+
+    @IsOptional()
+    postal_code?: string;
+
+    @IsOptional()
+    industry?: string;
+
+    @IsOptional()
+    company_size?: string;
+
+    @IsOptional()
+    @IsUrl()
+    linkedin_url?: string;
+
+    @IsNotEmpty()
+    user_id: number;
 }
