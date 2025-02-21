@@ -1,18 +1,19 @@
 import { Role } from "../etc/enums";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate, OneToOne } from "typeorm";
 import { Exclude } from 'class-transformer';
 import { IsEmail, IsNotEmpty, MinLength, IsOptional } from 'class-validator';
+import { Company } from "./company.entity";
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @Column()
+    @Column({nullable : true})
     @IsNotEmpty()
     first_name: string;
 
-    @Column()
+    @Column({nullable : true})
     @IsNotEmpty()
     last_name: string;
 
@@ -55,14 +56,9 @@ export class User {
     @UpdateDateColumn()
     updated_at: Date;
 
-    // Virtual property (not stored in database)
-    @Column({ select: false, insert: false, update: false })
-    get full_name(): string {
-        return `${this.first_name} ${this.last_name}`;
-    }
+    @OneToOne(() => Company, company => company.user)
+    company: Company;
 }
-
-
 
 
 export class UserModel {

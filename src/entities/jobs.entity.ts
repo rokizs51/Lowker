@@ -3,6 +3,7 @@ import { IsNotEmpty, IsString, IsNumber, IsOptional, IsBoolean, isDate, IsDate, 
 import {  JobGender, JobType } from '../etc/enums';
 import { JobCategory } from './jobs-category.entity';
 import { JobTag } from './job-tags.entity';
+import { Company } from './company.entity';
 
 
 
@@ -15,6 +16,9 @@ export class Jobs {
   @ManyToOne(() => JobCategory, (category) => category.jobs)
   job_category : JobCategory;
 
+  @ManyToOne(() => Company, (company) => company.jobs)
+  company : Company;
+
   @Column()
   title: string;
 
@@ -24,8 +28,8 @@ export class Jobs {
   @Column()
   experience: number;
 
-  @Column()
-  education: string;
+  @Column({nullable : true})
+  preferred_education: string;
 
   @Column({nullable : true})
   salary_min: number;
@@ -36,8 +40,11 @@ export class Jobs {
   @Column({type : 'enum', enum: JobType})
   job_type: JobType;
 
-  @Column()
-  age : number
+  @Column({nullable : true})
+  min_age : number
+
+  @Column({nullable : true})
+  max_age : number
 
   @Column()
   work_schedule: string;
@@ -48,7 +55,7 @@ export class Jobs {
   @Column({type : 'enum', enum : JobGender})
   preferred_gender: JobGender;
   
-  @Column()
+  @Column({default : true})
   isActive : boolean;
 
   @ManyToMany(() => JobTag, (tag) => tag.jobs, { cascade: true })
