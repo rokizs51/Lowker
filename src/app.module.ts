@@ -12,6 +12,8 @@ import { JobsCategoryModule } from './job-category/job-category.module';
 import { JobTagModule } from './job-tag/job-tag.module';
 import { User } from './entities/user.entity';
 import { Company } from './entities/company.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { Company } from './entities/company.entity';
     JobsModule,
     JobsCategoryModule,
     JobTagModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
